@@ -31,33 +31,32 @@ fixed_tests_False = (
 
 import unittest
 
-def check(first_arg, second_arg):
-    first, second = len(first_arg), len(second_arg)
-    if first>=second :
-      result=first_arg[first-second:]
-      if result==second_arg:
-          return True
-    else :
-        return False
 
-class TestSolution(unittest.TestCase):
 
-    def test_fixed_tests_true(self):
-        fixed_tests_True = [
-            ("samurai", "ai"),
-            ("ninja", "ja"),
-            ("sensei", "i"),
-            ("abc", "abc"),
-            ("abcabc", "bc"),
-            ("fails", "ails")
-        ]
-        
-        for string, ending in fixed_tests_True:
-            with self.subTest(string=string, ending=ending):
-                self.assertTrue(check(string, ending))
+class Strings:
+    
+    def __init__(self, list_of_string):
+        self.list_of_string=list_of_string
+        self.True_or_False=self.check_strings(list_of_string)
 
-    def test_fixed_tests_false(self):
-        fixed_tests_False = [
+    def check_strings(self, listofstrings):
+        for string in listofstrings :
+            first_arg, second_arg = string[0], string[1]
+            first, second = len(first_arg), len(second_arg)
+            if first>=second :
+                result=first_arg[first-second:]
+                if result!= second_arg:
+                   return False
+                    
+            else :
+                return False
+        return True
+    
+ 
+
+
+if __name__ == '__main__':
+    fixed_tests_False = [
             ("sumo", "omo"),
             ("samurai", "ra"),
             ("abc", "abcd"),
@@ -65,10 +64,17 @@ class TestSolution(unittest.TestCase):
             ("this", "fails"),
             ("spam", "eggs")
         ]
-        for string, ending in fixed_tests_False:
-            with self.subTest(string=string, ending=ending):
-                self.assertFalse(check(string, ending))
+    fixed_tests_True = [
+            ("samurai", "ai"),
+            ("ninja", "ja"),
+            ("sensei", "i"),
+            ("abc", "abc"),
+            ("abcabc", "bc"),
+            ("fails", "ails")
+        ]
 
+    fixed_tests_True=Strings(fixed_tests_True)
+    print(f"fixed_tests_True is : {fixed_tests_True.True_or_False}")
 
-if __name__ == '__main__':
-    unittest.main()
+    fixed_tests_False=Strings(fixed_tests_False)
+    print(f"fixed_tests_False is : {fixed_tests_False.True_or_False}")
