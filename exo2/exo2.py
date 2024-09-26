@@ -51,30 +51,3 @@ class Strings:
             else :
                 return False
         return True
-    
- 
-
-
-if __name__ == '__main__':
-    fixed_tests_False = [
-            ("sumo", "omo"),
-            ("samurai", "ra"),
-            ("abc", "abcd"),
-            ("ails", "fails"),
-            ("this", "fails"),
-            ("spam", "eggs")
-        ]
-    fixed_tests_True = [
-            ("samurai", "ai"),
-            ("ninja", "ja"),
-            ("sensei", "i"),
-            ("abc", "abc"),
-            ("abcabc", "bc"),
-            ("fails", "ails")
-        ]
-
-    fixed_tests_True=Strings(fixed_tests_True)
-    print(f"fixed_tests_True is : {fixed_tests_True.True_or_False}")
-
-    fixed_tests_False=Strings(fixed_tests_False)
-    print(f"fixed_tests_False is : {fixed_tests_False.True_or_False}")
