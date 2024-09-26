@@ -38,6 +38,29 @@ La chaîne OK si le backlog est vide. Sinon retourner la chaîne KO.
 """
 
 
+
 def processLines(lines) -> str:
-    # Implementer votre réponse ici
-    return "OK"
+    # Récupération des données
+    N = int(lines[0])  # Nombre de sprints
+    backlog = int(lines[1])  # Nombre initial de tâches
+
+    # Traiter chaque sprint
+    for i in range(2, N + 2):
+        V, U = map(int, lines[i].split())
+
+        backlog -= V
+        backlog += U
+
+    return "OK" if backlog == 0 else "KO"
+
+def lire_fichier(fichier):
+    with open(fichier, 'r') as f:
+        # Lire toutes les lignes et les stocker dans une liste, en supprimant les retours à la ligne
+        lines = [line.strip() for line in f.readlines()]
+    return lines
+
+# Exemple d'utilisation
+lines = lire_fichier('exo3\\sample\\input1.txt')
+print(f"input1 : {processLines(lines)}")
+lines = lire_fichier('exo3\\sample\\input1.txt')
+print(f"input2 : {processLines(lines)}")
